@@ -5,15 +5,43 @@ const generateExcelKlienci = function (req, res) {
   let workbook = new ExcelJS.Workbook();
   let worksheet = workbook.addWorksheet("Klienci");
 
+  const monthArray = [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    "10",
+    "11",
+    "12",
+  ];
+  const yearArray = ["2018", "2019", "2020"];
+  const randomDayArray = Array.from(Array(24).keys());
+
   const statusArray = ["Aktywny", "Zamknięty"];
 
   let arrayOfRows = [];
   for (let i = 1; i <= 1000; i++) {
     let randomStatus = Math.floor(Math.random() * statusArray.length);
+    let randomMonth = Math.floor(Math.random() * monthArray.length);
+    let randomYear = Math.floor(Math.random() * yearArray.length);
+    let randomDay = Math.floor(Math.random() * randomDayArray.length);
+    
+    let randomDate = new Date(
+      yearArray[randomYear],
+      monthArray[randomMonth],
+      randomDayArray[randomDay],
+      0,
+      0
+    );
     rowOfMockData = [
       i,
       faker.company.companyName(),
-      faker.date.past(),
+      randomDate,
       faker.address.state(),
       faker.address.cityName(),
       faker.address.streetAddress(),
@@ -62,7 +90,7 @@ const generateExcelUmowy = function (req, res) {
     "EUR",
     "USD",
     "AUD",
-    "AED",
+    "DKK",
     "CAD",
     "HUF",
     "CHF",
@@ -72,7 +100,7 @@ const generateExcelUmowy = function (req, res) {
     "RUB",
     "NOK",
   ];
-  const randomHourArray = Array.from(Array(24).keys());
+  const randomDayArray = Array.from(Array(24).keys());
 
   let arrayOfRows = [];
   let numberOfRecords = 10000;
@@ -81,12 +109,12 @@ const generateExcelUmowy = function (req, res) {
     let randomMonth = Math.floor(Math.random() * monthArray.length);
     let randomYear = Math.floor(Math.random() * yearArray.length);
     let randomCurrency = Math.floor(Math.random() * currencyArray.length);
-    let randomHour = Math.floor(Math.random() * randomHourArray.length);
+    let randomDay = Math.floor(Math.random() * randomDayArray.length);
 
     let randomDate = new Date(
       yearArray[randomYear],
       monthArray[randomMonth],
-      randomHourArray[randomHour],
+      randomDayArray[randomDay],
       0,
       0
     );
