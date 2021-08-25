@@ -5,11 +5,10 @@ const generateExcelKlienci = function (req, res) {
   let workbook = new ExcelJS.Workbook();
   let worksheet = workbook.addWorksheet("Klienci");
 
-  faker.locale = "pl";
   const statusArray = ["Aktywny", "Zamknięty"];
 
   let arrayOfRows = [];
-  for (let i = 1; i <= 500; i++) {
+  for (let i = 1; i <= 1000; i++) {
     let randomStatus = Math.floor(Math.random() * statusArray.length);
     rowOfMockData = [
       i,
@@ -43,7 +42,6 @@ const generateExcelUmowy = function (req, res) {
   let workbook = new ExcelJS.Workbook();
   let worksheet = workbook.addWorksheet("Umowy");
 
-  faker.locale = "pl";
   const monthArray = [
     "1",
     "2",
@@ -77,7 +75,8 @@ const generateExcelUmowy = function (req, res) {
   const randomHourArray = Array.from(Array(24).keys());
 
   let arrayOfRows = [];
-  let numberOfRecords = 500;
+  let numberOfRecords = 10000;
+  let numberOfClients = 1000;
   for (let i = 1; i <= numberOfRecords; i++) {
     let randomMonth = Math.floor(Math.random() * monthArray.length);
     let randomYear = Math.floor(Math.random() * yearArray.length);
@@ -93,7 +92,8 @@ const generateExcelUmowy = function (req, res) {
     );
 
     rowOfMockData = [
-      Math.floor(Math.random() * numberOfRecords + 1),
+      i,
+      Math.floor(Math.random() * numberOfClients + 1),
       randomDate,
       monthArray[randomMonth],
       yearArray[randomYear],
@@ -123,7 +123,6 @@ const generateExcelWplaty = function (req, res) {
   let workbook = new ExcelJS.Workbook();
   let worksheet = workbook.addWorksheet("Wplaty");
 
-  faker.locale = "pl";
   const currencyArray = [
     "PLN",
     "EUR",
@@ -141,13 +140,14 @@ const generateExcelWplaty = function (req, res) {
   ];
 
   let arrayOfRows = [];
-  let numberOfRecords = 500;
+  let numberOfRecords = 2000;
+  let numberOfClients = 1000;
   for (let i = 1; i <= numberOfRecords; i++) {
     let randomCurrency = Math.floor(Math.random() * currencyArray.length);
 
     rowOfMockData = [
       i,
-      Math.floor(Math.random() * numberOfRecords + 1),
+      Math.floor(Math.random() * numberOfClients + 1),
       faker.finance.amount(10, 10000, 2),
       currencyArray[randomCurrency],
     ];
