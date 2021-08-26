@@ -151,12 +151,29 @@ const generateExcelWplaty = function (req, res) {
   let workbook = new ExcelJS.Workbook();
   let worksheet = workbook.addWorksheet("Wplaty");
 
+  const monthArray = [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    "10",
+    "11",
+    "12",
+  ];
+  const yearArray = ["2018", "2019", "2020", "2021"];
+  const randomDayArray = Array.from(Array(24).keys());
+
   const currencyArray = [
     "PLN",
     "EUR",
     "USD",
     "AUD",
-    "AED",
+    "DKK",
     "CAD",
     "HUF",
     "CHF",
@@ -172,10 +189,22 @@ const generateExcelWplaty = function (req, res) {
   let numberOfClients = 1000;
   for (let i = 1; i <= numberOfRecords; i++) {
     let randomCurrency = Math.floor(Math.random() * currencyArray.length);
+    let randomMonth = Math.floor(Math.random() * monthArray.length);
+    let randomYear = Math.floor(Math.random() * yearArray.length);
+    let randomDay = Math.floor(Math.random() * randomDayArray.length);
+
+    let randomDate = new Date(
+      yearArray[randomYear],
+      monthArray[randomMonth],
+      randomDayArray[randomDay],
+      0,
+      0
+    );
 
     rowOfMockData = [
       i,
       Math.floor(Math.random() * numberOfClients + 1),
+      randomDate,
       faker.finance.amount(10, 10000, 2),
       currencyArray[randomCurrency],
     ];
