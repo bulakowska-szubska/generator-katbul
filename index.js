@@ -1,8 +1,6 @@
 let express = require("express");
 let bodyParser = require("body-parser");
 let app = express();
-const ExcelJS = require("exceljs");
-const faker = require("faker");
 const Routes = require('./routes/routes');
 
 
