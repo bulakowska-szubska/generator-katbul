@@ -1,5 +1,4 @@
 const ExcelJS = require("exceljs");
-const faker = require("faker");
 const axios = require("axios");
 
 const getCurrencyRates = async (req, res) => {
